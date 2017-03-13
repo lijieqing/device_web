@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kstech.dao.QCItemMapper" >
+  <resultMap id="BaseResultMap" type="com.kstech.model.QCItem" >
+    <id column="qc_id" property="qcId" jdbcType="INTEGER" />
+    <result column="device_num" property="deviceNum" jdbcType="VARCHAR" />
+    <result column="qcitem_id" property="qcitemId" jdbcType="VARCHAR" />
+    <result column="qc_name" property="qcName" jdbcType="VARCHAR" />
+    <result column="qctimeout" property="qctimeout" jdbcType="VARCHAR" />
+    <result column="qctimes" property="qctimes" jdbcType="VARCHAR" />
+    <result column="qc_readytimeout" property="qcReadytimeout" jdbcType="VARCHAR" />
+    <result column="qc_require" property="qcRequire" jdbcType="VARCHAR" />
+    <result column="qc_params" property="qcParams" jdbcType="VARCHAR" />
+    <result column="qc_msg" property="qcMsg" jdbcType="VARCHAR" />
+    <result column="qc_envparam" property="qcEnvparam" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    qc_id, device_num, qcitem_id, qc_name, qctimeout, qctimes, qc_readytimeout, qc_require, 
+    qc_params, qc_msg, qc_envparam
+  </sql>
+  <select id="selectByDevice" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	select 
+    <include refid="Base_Column_List" />
+    from table_qcitem
+    where device_num = #{values}
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from table_qcitem
+    where qc_id = #{qcId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from table_qcitem
+    where qc_id = #{qcId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.kstech.model.QCItem" >
+    insert into table_qcitem (qc_id, device_num, qcitem_id, 
+      qc_name, qctimeout, qctimes, 
+      qc_readytimeout, qc_require, qc_params, 
+      qc_msg, qc_envparam)
+    values (#{qcId,jdbcType=INTEGER}, #{deviceNum,jdbcType=VARCHAR}, #{qcitemId,jdbcType=VARCHAR}, 
+      #{qcName,jdbcType=VARCHAR}, #{qctimeout,jdbcType=VARCHAR}, #{qctimes,jdbcType=VARCHAR}, 
+      #{qcReadytimeout,jdbcType=VARCHAR}, #{qcRequire,jdbcType=VARCHAR}, #{qcParams,jdbcType=VARCHAR}, 
+      #{qcMsg,jdbcType=VARCHAR}, #{qcEnvparam,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.kstech.model.QCItem" >
+    insert into table_qcitem
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="qcId != null" >
+        qc_id,
+      </if>
+      <if test="deviceNum != null" >
+        device_num,
+      </if>
+      <if test="qcitemId != null" >
+        qcitem_id,
+      </if>
+      <if test="qcName != null" >
+        qc_name,
+      </if>
+      <if test="qctimeout != null" >
+        qctimeout,
+      </if>
+      <if test="qctimes != null" >
+        qctimes,
+      </if>
+      <if test="qcReadytimeout != null" >
+        qc_readytimeout,
+      </if>
+      <if test="qcRequire != null" >
+        qc_require,
+      </if>
+      <if test="qcParams != null" >
+        qc_params,
+      </if>
+      <if test="qcMsg != null" >
+        qc_msg,
+      </if>
+      <if test="qcEnvparam != null" >
+        qc_envparam,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="qcId != null" >
+        #{qcId,jdbcType=INTEGER},
+      </if>
+      <if test="deviceNum != null" >
+        #{deviceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="qcitemId != null" >
+        #{qcitemId,jdbcType=VARCHAR},
+      </if>
+      <if test="qcName != null" >
+        #{qcName,jdbcType=VARCHAR},
+      </if>
+      <if test="qctimeout != null" >
+        #{qctimeout,jdbcType=VARCHAR},
+      </if>
+      <if test="qctimes != null" >
+        #{qctimes,jdbcType=VARCHAR},
+      </if>
+      <if test="qcReadytimeout != null" >
+        #{qcReadytimeout,jdbcType=VARCHAR},
+      </if>
+      <if test="qcRequire != null" >
+        #{qcRequire,jdbcType=VARCHAR},
+      </if>
+      <if test="qcParams != null" >
+        #{qcParams,jdbcType=VARCHAR},
+      </if>
+      <if test="qcMsg != null" >
+        #{qcMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="qcEnvparam != null" >
+        #{qcEnvparam,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kstech.model.QCItem" >
+    update table_qcitem
+    <set >
+      <if test="deviceNum != null" >
+        device_num = #{deviceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="qcitemId != null" >
+        qcitem_id = #{qcitemId,jdbcType=VARCHAR},
+      </if>
+      <if test="qcName != null" >
+        qc_name = #{qcName,jdbcType=VARCHAR},
+      </if>
+      <if test="qctimeout != null" >
+        qctimeout = #{qctimeout,jdbcType=VARCHAR},
+      </if>
+      <if test="qctimes != null" >
+        qctimes = #{qctimes,jdbcType=VARCHAR},
+      </if>
+      <if test="qcReadytimeout != null" >
+        qc_readytimeout = #{qcReadytimeout,jdbcType=VARCHAR},
+      </if>
+      <if test="qcRequire != null" >
+        qc_require = #{qcRequire,jdbcType=VARCHAR},
+      </if>
+      <if test="qcParams != null" >
+        qc_params = #{qcParams,jdbcType=VARCHAR},
+      </if>
+      <if test="qcMsg != null" >
+        qc_msg = #{qcMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="qcEnvparam != null" >
+        qc_envparam = #{qcEnvparam,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where qc_id = #{qcId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kstech.model.QCItem" >
+    update table_qcitem
+    set device_num = #{deviceNum,jdbcType=VARCHAR},
+      qcitem_id = #{qcitemId,jdbcType=VARCHAR},
+      qc_name = #{qcName,jdbcType=VARCHAR},
+      qctimeout = #{qctimeout,jdbcType=VARCHAR},
+      qctimes = #{qctimes,jdbcType=VARCHAR},
+      qc_readytimeout = #{qcReadytimeout,jdbcType=VARCHAR},
+      qc_require = #{qcRequire,jdbcType=VARCHAR},
+      qc_params = #{qcParams,jdbcType=VARCHAR},
+      qc_msg = #{qcMsg,jdbcType=VARCHAR},
+      qc_envparam = #{qcEnvparam,jdbcType=VARCHAR}
+    where qc_id = #{qcId,jdbcType=INTEGER}
+  </update>
+</mapper>

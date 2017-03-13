@@ -1,0 +1,48 @@
+package com.kstech.utils;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.Reader;
+import java.util.ArrayList;
+import java.util.LinkedList;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
+
+public class MybatisUtils {
+    private static DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+    private static DocumentBuilder builder;
+    private static Document document = null;
+
+	public static SqlSessionFactory getSqlSessionFactory(){
+		String resource = "conf.xml"; 
+		//加载mybatis的配置文件（它也加载关联的映射文件）
+		Reader reader = null;
+		try {
+			reader = Resources.getResourceAsReader(resource);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		//构建sqlSession的工厂
+		SqlSessionFactory sessionFactory = null;
+		if(reader != null){
+			//构建sqlSession的工厂
+			sessionFactory = new SqlSessionFactoryBuilder().build(reader);
+		}
+		return sessionFactory;
+	}
+	
+}

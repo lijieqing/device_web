@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kstech.dao.SPNMapper" >
+  <resultMap id="BaseResultMap" type="com.kstech.model.SPN" >
+    <id column="sp_id" property="spId" jdbcType="INTEGER" />
+    <result column="sp_spn" property="spSpn" jdbcType="VARCHAR" />
+    <result column="sp_bits" property="spBits" jdbcType="VARCHAR" />
+    <result column="sp_bytes" property="spBytes" jdbcType="VARCHAR" />
+    <result column="sp_off" property="spOff" jdbcType="VARCHAR" />
+    <result column="sp_ref" property="spRef" jdbcType="VARCHAR" />
+    <result column="sp_res" property="spRes" jdbcType="VARCHAR" />
+    <result column="sp_sbit" property="spSbit" jdbcType="VARCHAR" />
+    <result column="sp_sbyte" property="spSbyte" jdbcType="VARCHAR" />
+    <result column="sp_type" property="spType" jdbcType="VARCHAR" />
+    <result column="pgn_num" property="pgnNum" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sp_id, sp_spn, sp_bits, sp_bytes, sp_off, sp_ref, sp_res, sp_sbit, sp_sbyte, sp_type, 
+    pgn_num
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from table_sp
+    where sp_id = #{spId,jdbcType=INTEGER}
+  </select>
+  
+    <select id="selectByPGN" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from table_sp
+    where pgn_num = #{pgnNum,jdbcType=VARCHAR}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from table_sp
+    where sp_id = #{spId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.kstech.model.SPN" >
+    insert into table_sp (sp_id, sp_spn, sp_bits, 
+      sp_bytes, sp_off, sp_ref, 
+      sp_res, sp_sbit, sp_sbyte, 
+      sp_type, pgn_num)
+    values (#{spId,jdbcType=INTEGER}, #{spSpn,jdbcType=VARCHAR}, #{spBits,jdbcType=VARCHAR}, 
+      #{spBytes,jdbcType=VARCHAR}, #{spOff,jdbcType=VARCHAR}, #{spRef,jdbcType=VARCHAR}, 
+      #{spRes,jdbcType=VARCHAR}, #{spSbit,jdbcType=VARCHAR}, #{spSbyte,jdbcType=VARCHAR}, 
+      #{spType,jdbcType=VARCHAR}, #{pgnNum,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.kstech.model.SPN" >
+    insert into table_sp
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="spId != null" >
+        sp_id,
+      </if>
+      <if test="spSpn != null" >
+        sp_spn,
+      </if>
+      <if test="spBits != null" >
+        sp_bits,
+      </if>
+      <if test="spBytes != null" >
+        sp_bytes,
+      </if>
+      <if test="spOff != null" >
+        sp_off,
+      </if>
+      <if test="spRef != null" >
+        sp_ref,
+      </if>
+      <if test="spRes != null" >
+        sp_res,
+      </if>
+      <if test="spSbit != null" >
+        sp_sbit,
+      </if>
+      <if test="spSbyte != null" >
+        sp_sbyte,
+      </if>
+      <if test="spType != null" >
+        sp_type,
+      </if>
+      <if test="pgnNum != null" >
+        pgn_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="spId != null" >
+        #{spId,jdbcType=INTEGER},
+      </if>
+      <if test="spSpn != null" >
+        #{spSpn,jdbcType=VARCHAR},
+      </if>
+      <if test="spBits != null" >
+        #{spBits,jdbcType=VARCHAR},
+      </if>
+      <if test="spBytes != null" >
+        #{spBytes,jdbcType=VARCHAR},
+      </if>
+      <if test="spOff != null" >
+        #{spOff,jdbcType=VARCHAR},
+      </if>
+      <if test="spRef != null" >
+        #{spRef,jdbcType=VARCHAR},
+      </if>
+      <if test="spRes != null" >
+        #{spRes,jdbcType=VARCHAR},
+      </if>
+      <if test="spSbit != null" >
+        #{spSbit,jdbcType=VARCHAR},
+      </if>
+      <if test="spSbyte != null" >
+        #{spSbyte,jdbcType=VARCHAR},
+      </if>
+      <if test="spType != null" >
+        #{spType,jdbcType=VARCHAR},
+      </if>
+      <if test="pgnNum != null" >
+        #{pgnNum,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+   <update id="updateByRefNameSelective" parameterType="com.kstech.model.SPN" >
+    update table_sp
+    <set >
+      <if test="spSpn != null" >
+        sp_spn = #{spSpn,jdbcType=VARCHAR},
+      </if>
+      <if test="spBits != null" >
+        sp_bits = #{spBits,jdbcType=VARCHAR},
+      </if>
+      <if test="spBytes != null" >
+        sp_bytes = #{spBytes,jdbcType=VARCHAR},
+      </if>
+      <if test="spOff != null" >
+        sp_off = #{spOff,jdbcType=VARCHAR},
+      </if>
+      <if test="spRef != null" >
+        sp_ref = #{spRef,jdbcType=VARCHAR},
+      </if>
+      <if test="spRes != null" >
+        sp_res = #{spRes,jdbcType=VARCHAR},
+      </if>
+      <if test="spSbit != null" >
+        sp_sbit = #{spSbit,jdbcType=VARCHAR},
+      </if>
+      <if test="spSbyte != null" >
+        sp_sbyte = #{spSbyte,jdbcType=VARCHAR},
+      </if>
+      <if test="spType != null" >
+        sp_type = #{spType,jdbcType=VARCHAR},
+      </if>
+      <if test="pgnNum != null" >
+        pgn_num = #{pgnNum,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sp_ref = #{spRef,jdbcType=VARCHAR}
+  </update>
+   <update id="updateByPrimaryKeySelective" parameterType="com.kstech.model.SPN" >
+    update table_sp
+    <set >
+      <if test="spSpn != null" >
+        sp_spn = #{spSpn,jdbcType=VARCHAR},
+      </if>
+      <if test="spBits != null" >
+        sp_bits = #{spBits,jdbcType=VARCHAR},
+      </if>
+      <if test="spBytes != null" >
+        sp_bytes = #{spBytes,jdbcType=VARCHAR},
+      </if>
+      <if test="spOff != null" >
+        sp_off = #{spOff,jdbcType=VARCHAR},
+      </if>
+      <if test="spRef != null" >
+        sp_ref = #{spRef,jdbcType=VARCHAR},
+      </if>
+      <if test="spRes != null" >
+        sp_res = #{spRes,jdbcType=VARCHAR},
+      </if>
+      <if test="spSbit != null" >
+        sp_sbit = #{spSbit,jdbcType=VARCHAR},
+      </if>
+      <if test="spSbyte != null" >
+        sp_sbyte = #{spSbyte,jdbcType=VARCHAR},
+      </if>
+      <if test="spType != null" >
+        sp_type = #{spType,jdbcType=VARCHAR},
+      </if>
+      <if test="pgnNum != null" >
+        pgn_num = #{pgnNum,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sp_id = #{spId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kstech.model.SPN" >
+    update table_sp
+    set sp_spn = #{spSpn,jdbcType=VARCHAR},
+      sp_bits = #{spBits,jdbcType=VARCHAR},
+      sp_bytes = #{spBytes,jdbcType=VARCHAR},
+      sp_off = #{spOff,jdbcType=VARCHAR},
+      sp_ref = #{spRef,jdbcType=VARCHAR},
+      sp_res = #{spRes,jdbcType=VARCHAR},
+      sp_sbit = #{spSbit,jdbcType=VARCHAR},
+      sp_sbyte = #{spSbyte,jdbcType=VARCHAR},
+      sp_type = #{spType,jdbcType=VARCHAR},
+      pgn_num = #{pgnNum,jdbcType=VARCHAR}
+    where sp_id = #{spId,jdbcType=INTEGER}
+  </update>
+</mapper>

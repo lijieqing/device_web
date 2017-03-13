@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kstech.dao.DSItemMapper" >
+  <resultMap id="BaseResultMap" type="com.kstech.model.DSItem" >
+    <id column="dsitem_id" property="dsitemId" jdbcType="INTEGER" />
+    <result column="device_num" property="deviceNum" jdbcType="VARCHAR" />
+    <result column="datatype" property="datatype" jdbcType="VARCHAR" />
+    <result column="declen" property="declen" jdbcType="VARCHAR" />
+    <result column="linkto" property="linkto" jdbcType="VARCHAR" />
+    <result column="dsitem_name" property="dsitemName" jdbcType="VARCHAR" />
+    <result column="dsitem_uint" property="dsitemUint" jdbcType="VARCHAR" />
+    <result column="dsitem_group_data" property="dsitemGroupData" jdbcType="VARCHAR" />
+    <result column="dsitem_value" property="dsitemValue" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    dsitem_id, device_num, datatype, declen, linkto, dsitem_name, dsitem_uint, dsitem_group_data, 
+    dsitem_value
+  </sql>
+  	  <select id="findByIdsMap"  resultMap="BaseResultMap">    
+         Select  
+         <include refid="Base_Column_List" />  
+         from table_dsitem where dsitem_id in  
+         <foreach item="item" index="index" collection="list"   
+          open="(" separator="," close=")">  
+                        #{item}  
+                </foreach>  
+  </select> 
+  <select id="selectByDevice" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	select 
+    <include refid="Base_Column_List" />
+    from table_dsitem
+    where device_num = #{values}
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from table_dsitem
+    where dsitem_id = #{dsitemId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from table_dsitem
+    where dsitem_id = #{dsitemId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.kstech.model.DSItem" >
+    insert into table_dsitem (dsitem_id, device_num, datatype, 
+      declen, linkto, dsitem_name, 
+      dsitem_uint, dsitem_group_data, dsitem_value
+      )
+    values (#{dsitemId,jdbcType=INTEGER}, #{deviceNum,jdbcType=VARCHAR}, #{datatype,jdbcType=VARCHAR}, 
+      #{declen,jdbcType=VARCHAR}, #{linkto,jdbcType=VARCHAR}, #{dsitemName,jdbcType=VARCHAR}, 
+      #{dsitemUint,jdbcType=VARCHAR}, #{dsitemGroupData,jdbcType=VARCHAR}, #{dsitemValue,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.kstech.model.DSItem" >
+    insert into table_dsitem
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dsitemId != null" >
+        dsitem_id,
+      </if>
+      <if test="deviceNum != null" >
+        device_num,
+      </if>
+      <if test="datatype != null" >
+        datatype,
+      </if>
+      <if test="declen != null" >
+        declen,
+      </if>
+      <if test="linkto != null" >
+        linkto,
+      </if>
+      <if test="dsitemName != null" >
+        dsitem_name,
+      </if>
+      <if test="dsitemUint != null" >
+        dsitem_uint,
+      </if>
+      <if test="dsitemGroupData != null" >
+        dsitem_group_data,
+      </if>
+      <if test="dsitemValue != null" >
+        dsitem_value,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dsitemId != null" >
+        #{dsitemId,jdbcType=INTEGER},
+      </if>
+      <if test="deviceNum != null" >
+        #{deviceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="datatype != null" >
+        #{datatype,jdbcType=VARCHAR},
+      </if>
+      <if test="declen != null" >
+        #{declen,jdbcType=VARCHAR},
+      </if>
+      <if test="linkto != null" >
+        #{linkto,jdbcType=VARCHAR},
+      </if>
+      <if test="dsitemName != null" >
+        #{dsitemName,jdbcType=VARCHAR},
+      </if>
+      <if test="dsitemUint != null" >
+        #{dsitemUint,jdbcType=VARCHAR},
+      </if>
+      <if test="dsitemGroupData != null" >
+        #{dsitemGroupData,jdbcType=VARCHAR},
+      </if>
+      <if test="dsitemValue != null" >
+        #{dsitemValue,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+    <update id="updateByName" parameterType="com.kstech.model.DSItem" >
+    update table_dsitem
+    <set >
+      <if test="deviceNum != null" >
+        device_num = #{deviceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="datatype != null" >
+        datatype = #{datatype,jdbcType=VARCHAR},
+      </if>
+      <if test="declen != null" >
+        declen = #{declen,jdbcType=VARCHAR},
+      </if>
+      <if test="linkto != null" >
+        linkto = #{linkto,jdbcType=VARCHAR},
+      </if>
+      <if test="dsitemUint != null" >
+        dsitem_uint = #{dsitemUint,jdbcType=VARCHAR},
+      </if>
+      <if test="dsitemGroupData != null" >
+        dsitem_group_data = #{dsitemGroupData,jdbcType=VARCHAR},
+      </if>
+      <if test="dsitemValue != null" >
+        dsitem_value = #{dsitemValue,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where dsitem_name = #{dsitemName,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kstech.model.DSItem" >
+    update table_dsitem
+    <set >
+      <if test="deviceNum != null" >
+        device_num = #{deviceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="datatype != null" >
+        datatype = #{datatype,jdbcType=VARCHAR},
+      </if>
+      <if test="declen != null" >
+        declen = #{declen,jdbcType=VARCHAR},
+      </if>
+      <if test="linkto != null" >
+        linkto = #{linkto,jdbcType=VARCHAR},
+      </if>
+      <if test="dsitemName != null" >
+        dsitem_name = #{dsitemName,jdbcType=VARCHAR},
+      </if>
+      <if test="dsitemUint != null" >
+        dsitem_uint = #{dsitemUint,jdbcType=VARCHAR},
+      </if>
+      <if test="dsitemGroupData != null" >
+        dsitem_group_data = #{dsitemGroupData,jdbcType=VARCHAR},
+      </if>
+      <if test="dsitemValue != null" >
+        dsitem_value = #{dsitemValue,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where dsitem_id = #{dsitemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kstech.model.DSItem" >
+    update table_dsitem
+    set device_num = #{deviceNum,jdbcType=VARCHAR},
+      datatype = #{datatype,jdbcType=VARCHAR},
+      declen = #{declen,jdbcType=VARCHAR},
+      linkto = #{linkto,jdbcType=VARCHAR},
+      dsitem_name = #{dsitemName,jdbcType=VARCHAR},
+      dsitem_uint = #{dsitemUint,jdbcType=VARCHAR},
+      dsitem_group_data = #{dsitemGroupData,jdbcType=VARCHAR},
+      dsitem_value = #{dsitemValue,jdbcType=VARCHAR}
+    where dsitem_id = #{dsitemId,jdbcType=INTEGER}
+  </update>
+</mapper>

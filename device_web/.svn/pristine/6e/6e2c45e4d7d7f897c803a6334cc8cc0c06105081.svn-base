@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kstech.dao.RealTimeMapper" >
+  <resultMap id="BaseResultMap" type="com.kstech.model.RealTime" >
+    <id column="realtime_id" property="realtimeId" jdbcType="INTEGER" />
+    <result column="device_num" property="deviceNum" jdbcType="VARCHAR" />
+    <result column="realtime_name" property="realtimeName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    realtime_id, device_num, realtime_name
+  </sql>
+   <select id="selectByDevice" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	select 
+    <include refid="Base_Column_List" />
+    from table_realtime
+    where device_num = #{values}
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from table_realtime
+    where realtime_id = #{realtimeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from table_realtime
+    where realtime_id = #{realtimeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.kstech.model.RealTime" >
+    insert into table_realtime (realtime_id, device_num, realtime_name
+      )
+    values (#{realtimeId,jdbcType=INTEGER}, #{deviceNum,jdbcType=VARCHAR}, #{realtimeName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.kstech.model.RealTime" >
+    insert into table_realtime
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="realtimeId != null" >
+        realtime_id,
+      </if>
+      <if test="deviceNum != null" >
+        device_num,
+      </if>
+      <if test="realtimeName != null" >
+        realtime_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="realtimeId != null" >
+        #{realtimeId,jdbcType=INTEGER},
+      </if>
+      <if test="deviceNum != null" >
+        #{deviceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="realtimeName != null" >
+        #{realtimeName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kstech.model.RealTime" >
+    update table_realtime
+    <set >
+      <if test="deviceNum != null" >
+        device_num = #{deviceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="realtimeName != null" >
+        realtime_name = #{realtimeName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where realtime_id = #{realtimeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kstech.model.RealTime" >
+    update table_realtime
+    set device_num = #{deviceNum,jdbcType=VARCHAR},
+      realtime_name = #{realtimeName,jdbcType=VARCHAR}
+    where realtime_id = #{realtimeId,jdbcType=INTEGER}
+  </update>
+</mapper>

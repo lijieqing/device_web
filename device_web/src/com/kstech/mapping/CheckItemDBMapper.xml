@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kstech.dao.CheckItemDBMapper" >
+  <resultMap id="BaseResultMap" type="com.kstech.model.CheckItemDB" >
+    <id column="item_id" property="itemId" jdbcType="INTEGER" />
+    <result column="exc_id" property="excId" jdbcType="INTEGER" />
+    <result column="exc_name" property="excName" jdbcType="VARCHAR" />
+    <result column="item_name" property="itemName" jdbcType="VARCHAR" />
+    <result column="param_data" property="paramData" jdbcType="VARCHAR" />
+    <result column="item_skip" property="itemSkip" jdbcType="INTEGER" />
+    <result column="item_desc" property="itemDesc" jdbcType="VARCHAR" />
+    <result column="item_checktimes" property="itemChecktimes" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    item_id, exc_id, exc_name, item_name, param_data, item_skip, item_desc, item_checktimes
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from record_checkitem
+    where item_id = #{itemId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from record_checkitem
+    where item_id = #{itemId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.kstech.model.CheckItemDB" >
+    insert into record_checkitem (item_id, exc_id, exc_name, 
+      item_name, param_data, item_skip, 
+      item_desc, item_checktimes)
+    values (#{itemId,jdbcType=INTEGER}, #{excId,jdbcType=INTEGER}, #{excName,jdbcType=VARCHAR}, 
+      #{itemName,jdbcType=VARCHAR}, #{paramData,jdbcType=VARCHAR}, #{itemSkip,jdbcType=INTEGER}, 
+      #{itemDesc,jdbcType=VARCHAR}, #{itemChecktimes,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.kstech.model.CheckItemDB" >
+    insert into record_checkitem
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="itemId != null" >
+        item_id,
+      </if>
+      <if test="excId != null" >
+        exc_id,
+      </if>
+      <if test="excName != null" >
+        exc_name,
+      </if>
+      <if test="itemName != null" >
+        item_name,
+      </if>
+      <if test="paramData != null" >
+        param_data,
+      </if>
+      <if test="itemSkip != null" >
+        item_skip,
+      </if>
+      <if test="itemDesc != null" >
+        item_desc,
+      </if>
+      <if test="itemChecktimes != null" >
+        item_checktimes,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="itemId != null" >
+        #{itemId,jdbcType=INTEGER},
+      </if>
+      <if test="excId != null" >
+        #{excId,jdbcType=INTEGER},
+      </if>
+      <if test="excName != null" >
+        #{excName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="paramData != null" >
+        #{paramData,jdbcType=VARCHAR},
+      </if>
+      <if test="itemSkip != null" >
+        #{itemSkip,jdbcType=INTEGER},
+      </if>
+      <if test="itemDesc != null" >
+        #{itemDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="itemChecktimes != null" >
+        #{itemChecktimes,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kstech.model.CheckItemDB" >
+    update record_checkitem
+    <set >
+      <if test="excId != null" >
+        exc_id = #{excId,jdbcType=INTEGER},
+      </if>
+      <if test="excName != null" >
+        exc_name = #{excName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        item_name = #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="paramData != null" >
+        param_data = #{paramData,jdbcType=VARCHAR},
+      </if>
+      <if test="itemSkip != null" >
+        item_skip = #{itemSkip,jdbcType=INTEGER},
+      </if>
+      <if test="itemDesc != null" >
+        item_desc = #{itemDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="itemChecktimes != null" >
+        item_checktimes = #{itemChecktimes,jdbcType=INTEGER},
+      </if>
+    </set>
+    where item_id = #{itemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kstech.model.CheckItemDB" >
+    update record_checkitem
+    set exc_id = #{excId,jdbcType=INTEGER},
+      exc_name = #{excName,jdbcType=VARCHAR},
+      item_name = #{itemName,jdbcType=VARCHAR},
+      param_data = #{paramData,jdbcType=VARCHAR},
+      item_skip = #{itemSkip,jdbcType=INTEGER},
+      item_desc = #{itemDesc,jdbcType=VARCHAR},
+      item_checktimes = #{itemChecktimes,jdbcType=INTEGER}
+    where item_id = #{itemId,jdbcType=INTEGER}
+  </update>
+</mapper>

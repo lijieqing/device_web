@@ -1,0 +1,33 @@
+package com.kstech.test;
+
+import java.util.List;
+
+import org.junit.Test;
+
+import com.kstech.dao.imp.DeviceCFGDao;
+import com.kstech.dao.imp.DsItemDao;
+import com.kstech.model.DSItem;
+import com.kstech.model.DeviceCFG;
+import com.kstech.utils.JsonUtils;
+
+public class test02 {
+	
+	@Test
+	public void getDevice_CFG_Detail(){
+		DeviceCFGDao deviceCFGDao = new DeviceCFGDao();
+		DeviceCFG deviceCFG = deviceCFGDao.selectByDeviceNum("kstech");
+		System.out.println(deviceCFG.getDeviceRealtime());
+	}
+	@Test
+	public void ToJsonTest(){
+		DeviceCFGDao deviceCFGDao = new DeviceCFGDao();
+		DsItemDao dsItemDao = new DsItemDao();
+		DeviceCFG deviceCFG = deviceCFGDao.selectByDeviceNum("kstech");
+		
+		String dsIDs = deviceCFG.getDsitemIdGroup();
+		List<Integer> DSlist = JsonUtils.fromArrayJson(dsIDs, Integer.class);
+		List<DSItem> dsitems = dsItemDao.selectByIDs(DSlist);
+		String s = JsonUtils.toJson(dsitems);
+		System.out.println(s);
+	}
+}

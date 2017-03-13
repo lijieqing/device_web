@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kstech.dao.PGNMapper" >
+  <resultMap id="BaseResultMap" type="com.kstech.model.PGN" >
+    <id column="pgn_id" property="pgnId" jdbcType="INTEGER" />
+    <result column="device_num" property="deviceNum" jdbcType="VARCHAR" />
+    <result column="pgn_num" property="pgnNum" jdbcType="VARCHAR" />
+    <result column="pgn_dir" property="pgnDir" jdbcType="VARCHAR" />
+    <result column="pgn_len" property="pgnLen" jdbcType="VARCHAR" />
+    <result column="pgn_prio" property="pgnPrio" jdbcType="VARCHAR" />
+    <result column="pgn_rate" property="pgnRate" jdbcType="VARCHAR" />
+    <result column="pgn_req" property="pgnReq" jdbcType="VARCHAR" />
+    <result column="pgn_reqcyc" property="pgnReqcyc" jdbcType="VARCHAR" />
+    <result column="pgn_sa" property="pgnSa" jdbcType="VARCHAR" />
+    <result column="pgn_group_sp" property="pgnGroupSp" jdbcType="VARCHAR" />
+    <result column="pgn_type" property="pgnType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    pgn_id, device_num, pgn_num, pgn_dir, pgn_len, pgn_prio, pgn_rate, pgn_req, pgn_reqcyc, 
+    pgn_sa, pgn_group_sp, pgn_type
+  </sql>
+  
+    <select id="findByIdsMap"  resultMap="BaseResultMap">    
+         Select  
+         <include refid="Base_Column_List" />  
+         from table_pgn where pgn_id in  
+         <foreach item="item" index="index" collection="list"   
+          open="(" separator="," close=")">  
+                        #{item}  
+                </foreach>  
+  </select> 
+    <select id="selectByDevice" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	select 
+    <include refid="Base_Column_List" />
+    from table_pgn
+    where device_num = #{values}
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from table_pgn
+    where pgn_id = #{pgnId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from table_pgn
+    where pgn_id = #{pgnId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.kstech.model.PGN" >
+    insert into table_pgn (pgn_id, device_num, pgn_num, 
+      pgn_dir, pgn_len, pgn_prio, 
+      pgn_rate, pgn_req, pgn_reqcyc, 
+      pgn_sa, pgn_group_sp, pgn_type
+      )
+    values (#{pgnId,jdbcType=INTEGER}, #{deviceNum,jdbcType=VARCHAR}, #{pgnNum,jdbcType=VARCHAR}, 
+      #{pgnDir,jdbcType=VARCHAR}, #{pgnLen,jdbcType=VARCHAR}, #{pgnPrio,jdbcType=VARCHAR}, 
+      #{pgnRate,jdbcType=VARCHAR}, #{pgnReq,jdbcType=VARCHAR}, #{pgnReqcyc,jdbcType=VARCHAR}, 
+      #{pgnSa,jdbcType=VARCHAR}, #{pgnGroupSp,jdbcType=VARCHAR}, #{pgnType,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.kstech.model.PGN" >
+    insert into table_pgn
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pgnId != null" >
+        pgn_id,
+      </if>
+      <if test="deviceNum != null" >
+        device_num,
+      </if>
+      <if test="pgnNum != null" >
+        pgn_num,
+      </if>
+      <if test="pgnDir != null" >
+        pgn_dir,
+      </if>
+      <if test="pgnLen != null" >
+        pgn_len,
+      </if>
+      <if test="pgnPrio != null" >
+        pgn_prio,
+      </if>
+      <if test="pgnRate != null" >
+        pgn_rate,
+      </if>
+      <if test="pgnReq != null" >
+        pgn_req,
+      </if>
+      <if test="pgnReqcyc != null" >
+        pgn_reqcyc,
+      </if>
+      <if test="pgnSa != null" >
+        pgn_sa,
+      </if>
+      <if test="pgnGroupSp != null" >
+        pgn_group_sp,
+      </if>
+      <if test="pgnType != null" >
+        pgn_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pgnId != null" >
+        #{pgnId,jdbcType=INTEGER},
+      </if>
+      <if test="deviceNum != null" >
+        #{deviceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="pgnNum != null" >
+        #{pgnNum,jdbcType=VARCHAR},
+      </if>
+      <if test="pgnDir != null" >
+        #{pgnDir,jdbcType=VARCHAR},
+      </if>
+      <if test="pgnLen != null" >
+        #{pgnLen,jdbcType=VARCHAR},
+      </if>
+      <if test="pgnPrio != null" >
+        #{pgnPrio,jdbcType=VARCHAR},
+      </if>
+      <if test="pgnRate != null" >
+        #{pgnRate,jdbcType=VARCHAR},
+      </if>
+      <if test="pgnReq != null" >
+        #{pgnReq,jdbcType=VARCHAR},
+      </if>
+      <if test="pgnReqcyc != null" >
+        #{pgnReqcyc,jdbcType=VARCHAR},
+      </if>
+      <if test="pgnSa != null" >
+        #{pgnSa,jdbcType=VARCHAR},
+      </if>
+      <if test="pgnGroupSp != null" >
+        #{pgnGroupSp,jdbcType=VARCHAR},
+      </if>
+      <if test="pgnType != null" >
+        #{pgnType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kstech.model.PGN" >
+    update table_pgn
+    <set >
+      <if test="deviceNum != null" >
+        device_num = #{deviceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="pgnNum != null" >
+        pgn_num = #{pgnNum,jdbcType=VARCHAR},
+      </if>
+      <if test="pgnDir != null" >
+        pgn_dir = #{pgnDir,jdbcType=VARCHAR},
+      </if>
+      <if test="pgnLen != null" >
+        pgn_len = #{pgnLen,jdbcType=VARCHAR},
+      </if>
+      <if test="pgnPrio != null" >
+        pgn_prio = #{pgnPrio,jdbcType=VARCHAR},
+      </if>
+      <if test="pgnRate != null" >
+        pgn_rate = #{pgnRate,jdbcType=VARCHAR},
+      </if>
+      <if test="pgnReq != null" >
+        pgn_req = #{pgnReq,jdbcType=VARCHAR},
+      </if>
+      <if test="pgnReqcyc != null" >
+        pgn_reqcyc = #{pgnReqcyc,jdbcType=VARCHAR},
+      </if>
+      <if test="pgnSa != null" >
+        pgn_sa = #{pgnSa,jdbcType=VARCHAR},
+      </if>
+      <if test="pgnGroupSp != null" >
+        pgn_group_sp = #{pgnGroupSp,jdbcType=VARCHAR},
+      </if>
+      <if test="pgnType != null" >
+        pgn_type = #{pgnType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pgn_id = #{pgnId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kstech.model.PGN" >
+    update table_pgn
+    set device_num = #{deviceNum,jdbcType=VARCHAR},
+      pgn_num = #{pgnNum,jdbcType=VARCHAR},
+      pgn_dir = #{pgnDir,jdbcType=VARCHAR},
+      pgn_len = #{pgnLen,jdbcType=VARCHAR},
+      pgn_prio = #{pgnPrio,jdbcType=VARCHAR},
+      pgn_rate = #{pgnRate,jdbcType=VARCHAR},
+      pgn_req = #{pgnReq,jdbcType=VARCHAR},
+      pgn_reqcyc = #{pgnReqcyc,jdbcType=VARCHAR},
+      pgn_sa = #{pgnSa,jdbcType=VARCHAR},
+      pgn_group_sp = #{pgnGroupSp,jdbcType=VARCHAR},
+      pgn_type = #{pgnType,jdbcType=VARCHAR}
+    where pgn_id = #{pgnId,jdbcType=INTEGER}
+  </update>
+</mapper>

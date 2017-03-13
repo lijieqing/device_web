@@ -1,0 +1,65 @@
+package com.kstech.dao.imp;
+
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+
+import com.kstech.dao.msgMapper;
+import com.kstech.model.Msg;
+import com.kstech.utils.MybatisUtils;
+
+public class MSGDao implements msgMapper{
+	
+	private static String STRMapper = "com.kstech.dao.msgMapper.";
+	private SqlSessionFactory factory;
+	private SqlSession session;
+
+	public MSGDao() {
+		factory = MybatisUtils.getSqlSessionFactory();
+		session = factory.openSession(true);
+	}
+
+	public int deleteByPrimaryKey(Integer msgId) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public int insert(Msg record) {
+		// TODO Auto-generated method stub
+		String statement = STRMapper+"insert";
+		int i = session.insert(statement,record);
+		return i;
+	}
+
+	public int insertSelective(Msg record) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public Msg selectByPrimaryKey(Integer msgId) {
+		// TODO Auto-generated method stub
+		String statement = STRMapper+"selectByPrimaryKey";
+		Msg m = session.selectOne(statement,msgId);
+		return m;
+	}
+
+	public int updateByPrimaryKeySelective(Msg record) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public int updateByPrimaryKey(Msg record) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<Msg> getALL() {
+		// TODO Auto-generated method stub
+		String statement = STRMapper+"selectALL";
+		List<Msg> list = session.selectList(statement);
+		return list;
+	} 
+
+}

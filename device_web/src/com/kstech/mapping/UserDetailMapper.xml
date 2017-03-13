@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kstech.dao.UserDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.kstech.model.UserDetail" >
+    <id column="userdetail_id" property="userdetailId" jdbcType="INTEGER" />
+    <result column="user_code" property="userCode" jdbcType="VARCHAR" />
+    <result column="user_createtime" property="userCreatetime" jdbcType="DATE" />
+    <result column="user_invalidtime" property="userInvalidtime" jdbcType="DATE" />
+    <result column="user_logintime" property="userLogintime" jdbcType="DATE" />
+    <result column="creator_code" property="creatorCode" jdbcType="VARCHAR" />
+    <result column="stoper_code" property="stoperCode" jdbcType="VARCHAR" />
+    <result column="unfinish_item_id" property="unfinishItemId" jdbcType="INTEGER" />
+    <result column="unfinsh_desc" property="unfinshDesc" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    userdetail_id, user_code, user_createtime, user_invalidtime, user_logintime, creator_code, 
+    stoper_code, unfinish_item_id, unfinsh_desc
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_detail
+    where userdetail_id = #{userdetailId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user_detail
+    where userdetail_id = #{userdetailId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.kstech.model.UserDetail" >
+    insert into user_detail (userdetail_id, user_code, user_createtime, 
+      user_invalidtime, user_logintime, creator_code, 
+      stoper_code, unfinish_item_id, unfinsh_desc
+      )
+    values (#{userdetailId,jdbcType=INTEGER}, #{userCode,jdbcType=VARCHAR}, #{userCreatetime,jdbcType=DATE}, 
+      #{userInvalidtime,jdbcType=DATE}, #{userLogintime,jdbcType=DATE}, #{creatorCode,jdbcType=VARCHAR}, 
+      #{stoperCode,jdbcType=VARCHAR}, #{unfinishItemId,jdbcType=INTEGER}, #{unfinshDesc,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.kstech.model.UserDetail" >
+    insert into user_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userdetailId != null" >
+        userdetail_id,
+      </if>
+      <if test="userCode != null" >
+        user_code,
+      </if>
+      <if test="userCreatetime != null" >
+        user_createtime,
+      </if>
+      <if test="userInvalidtime != null" >
+        user_invalidtime,
+      </if>
+      <if test="userLogintime != null" >
+        user_logintime,
+      </if>
+      <if test="creatorCode != null" >
+        creator_code,
+      </if>
+      <if test="stoperCode != null" >
+        stoper_code,
+      </if>
+      <if test="unfinishItemId != null" >
+        unfinish_item_id,
+      </if>
+      <if test="unfinshDesc != null" >
+        unfinsh_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userdetailId != null" >
+        #{userdetailId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userCreatetime != null" >
+        #{userCreatetime,jdbcType=DATE},
+      </if>
+      <if test="userInvalidtime != null" >
+        #{userInvalidtime,jdbcType=DATE},
+      </if>
+      <if test="userLogintime != null" >
+        #{userLogintime,jdbcType=DATE},
+      </if>
+      <if test="creatorCode != null" >
+        #{creatorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stoperCode != null" >
+        #{stoperCode,jdbcType=VARCHAR},
+      </if>
+      <if test="unfinishItemId != null" >
+        #{unfinishItemId,jdbcType=INTEGER},
+      </if>
+      <if test="unfinshDesc != null" >
+        #{unfinshDesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kstech.model.UserDetail" >
+    update user_detail
+    <set >
+      <if test="userId != null" >
+        user_code = #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userCreatetime != null" >
+        user_createtime = #{userCreatetime,jdbcType=DATE},
+      </if>
+      <if test="userInvalidtime != null" >
+        user_invalidtime = #{userInvalidtime,jdbcType=DATE},
+      </if>
+      <if test="userLogintime != null" >
+        user_logintime = #{userLogintime,jdbcType=DATE},
+      </if>
+      <if test="creatorCode != null" >
+        creator_code = #{creatorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stoperCode != null" >
+        stoper_code = #{stoperCode,jdbcType=VARCHAR},
+      </if>
+      <if test="unfinishItemId != null" >
+        unfinish_item_id = #{unfinishItemId,jdbcType=INTEGER},
+      </if>
+      <if test="unfinshDesc != null" >
+        unfinsh_desc = #{unfinshDesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where userdetail_id = #{userdetailId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kstech.model.UserDetail" >
+    update user_detail
+    set user_code = #{userCode,jdbcType=VARCHAR},
+      user_createtime = #{userCreatetime,jdbcType=DATE},
+      user_invalidtime = #{userInvalidtime,jdbcType=DATE},
+      user_logintime = #{userLogintime,jdbcType=DATE},
+      creator_code = #{creatorCode,jdbcType=VARCHAR},
+      stoper_code = #{stoperCode,jdbcType=VARCHAR},
+      unfinish_item_id = #{unfinishItemId,jdbcType=INTEGER},
+      unfinsh_desc = #{unfinshDesc,jdbcType=VARCHAR}
+    where userdetail_id = #{userdetailId,jdbcType=INTEGER}
+  </update>
+</mapper>
