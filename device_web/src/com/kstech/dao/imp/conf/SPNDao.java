@@ -22,7 +22,9 @@ public class SPNDao implements SPNMapper{
 
 	public int deleteByPrimaryKey(Integer spId) {
 		// TODO Auto-generated method stub
-		return 0;
+		String statement = SPNMapper+"deleteByPrimaryKey";
+		int i =session.insert(statement,spId);
+		return i;
 	}
 
 	public int insert(SPN record) {
@@ -34,12 +36,15 @@ public class SPNDao implements SPNMapper{
 
 	public int insertSelective(SPN record) {
 		// TODO Auto-generated method stub
-		return 0;
+		String statement = SPNMapper+"insertSelective";
+		int i =session.insert(statement,record);
+		return i;
 	}
 
 	public SPN selectByPrimaryKey(Integer spId) {
 		// TODO Auto-generated method stub
-		return null;
+		String statement = SPNMapper+"selectByPrimaryKey";
+		return session.selectOne(statement, spId);
 	}
 	public int updateByRefNameSelective(SPN record){
 		String statement = SPNMapper+"updateByRefNameSelective";
@@ -48,12 +53,16 @@ public class SPNDao implements SPNMapper{
 	}
 	public int updateByPrimaryKeySelective(SPN record) {
 		// TODO Auto-generated method stub
-		return 0;
+		String statement = SPNMapper+"updateByPrimaryKeySelective";
+		int i = session.update(statement,record);
+		return i;
 	}
 
 	public int updateByPrimaryKey(SPN record) {
 		// TODO Auto-generated method stub
-		return 0;
+		String statement = SPNMapper+"updateByPrimaryKey";
+		int i = session.update(statement,record);
+		return i;
 	}
 
 	@Override

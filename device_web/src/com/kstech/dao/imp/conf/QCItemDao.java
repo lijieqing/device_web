@@ -48,12 +48,14 @@ public class QCItemDao implements QCItemMapper {
 
 	public int updateByPrimaryKeySelective(QCItem record) {
 		// TODO Auto-generated method stub
-		return 0;
+		String statement = QCIMapper+"updateByPrimaryKeySelective";
+		return session.update(statement, record);
 	}
 
 	public int updateByPrimaryKey(QCItem record) {
 		// TODO Auto-generated method stub
-		return 0;
+		String statement = QCIMapper+"updateByPrimaryKey";
+		return session.update(statement, record);
 	}
 	public List<QCItem> selectByDevice(String values) {
 		// TODO Auto-generated method stub
