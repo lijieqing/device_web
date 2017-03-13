@@ -11,6 +11,7 @@ public class User {
 
     private String password;
 
+    //用户优先级 即用户身份  检验员 1 .管理员0等
     private Integer priority;
 
     private Integer userStatus;

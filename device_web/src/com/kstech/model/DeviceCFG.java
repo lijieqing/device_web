@@ -1,18 +1,25 @@
 package com.kstech.model;
 
 public class DeviceCFG {
+	//机型 检测设备配置表ID
     private Integer deviceId;
-
+    
+    //机型 检测设备配置表名称
     private String deviceNum;
 
+    //机型检测配置文件生成时间
     private String dateCreate;
 
+    //该机型 包含DSItem 的ID集合 
     private String dsitemIdGroup;
 
+    //该机型 包含PGN 的ID集合
     private String pgnIdGroup;
 
+    //该机型 包含QCItem 的ID集合
     private String qcIdGroup;
 
+    //该机型 包含Realtime 的ID集合
     private String deviceRealtime;
 
     public DeviceCFG() {

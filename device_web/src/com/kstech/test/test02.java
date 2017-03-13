@@ -2,11 +2,7 @@ package com.kstech.test;
 
 import java.util.Date;
 import java.util.List;
-
-import javafx.scene.layout.Priority;
-
 import org.junit.Test;
-
 import com.kstech.dao.imp.check.UserDao;
 import com.kstech.dao.imp.check.UserDetailDao;
 import com.kstech.dao.imp.conf.DeviceCFGDao;

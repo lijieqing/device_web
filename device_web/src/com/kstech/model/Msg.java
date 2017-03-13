@@ -6,9 +6,10 @@ public class Msg {
 		return "Msg [msgId=" + msgId + ", refname=" + refname + ", content="
 				+ content + "]";
 	}
-
+    //对应数据库中msgID 
 	private Integer msgId;
 
+	//查找msg 中content时的索引 格式  fmi10
     private String refname;
 
     private String content;

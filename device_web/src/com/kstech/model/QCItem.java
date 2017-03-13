@@ -17,10 +17,13 @@ public class QCItem {
 
     private String qcRequire;
 
+    //检测项目中的非环境参数 格式为json 格式[{"Param":"先导压力怠速","ValidMin":"3.5","ValidMax":"4.1","ValidAvg":""}]
     private String qcParams;
 
+    //检测项目中的消息配置 格式为json 格式{"ReadyMsg":"fmi50","NotReadyMsg":"fmi0","AbortMsg":"","OkMsg":"fmi31","QCProgressMsg":[{"Code":"1","Msg":"fmi41"},{"Code":"2","Msg":"fmi42"},{"Code":"3","Msg":"fmi43"},{"Code":"4","Msg":"fmi20"}],"QCErrMsg":[{"Code":"1","Msg":"fmi1"},{"Code":"2","Msg":"fmi2"}]}
     private String qcMsg;
 
+    //检测项目中的环境参数 格式为json 格式[{"ENVParam":"油温温度","ValidMin":"0","ValidMax":"100"}]
     private String qcEnvparam;
     
 

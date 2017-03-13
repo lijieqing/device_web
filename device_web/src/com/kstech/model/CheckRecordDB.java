@@ -3,24 +3,34 @@ package com.kstech.model;
 import java.util.Date;
 
 public class CheckRecordDB {
+	//机型检测记录ID ：一个机型完整的检测数据对应一条 机型检测记录
     private Integer excId;
-
+    
+    //机型检测记录名称，一般与机器出厂编号对应
     private String excName;
 
+    //检测过程中用到的 机型配置信息ID 在Device——cfg表中
     private Integer deviceId;
 
+    //检测过程中用到的 机型配置信息名称
     private String deviceNum;
 
+    //检验员工号
     private Integer checkerCode;
 
+    //检验员名称
     private String checkerName;
 
+    //当前机型检测状态 0：未开始 。1：未完成 。2：未合格 。3：合格 。4：强制合格 。
     private Integer checkExcStatus;
 
+    //该机型检测开始时间
     private Date checkDateStart;
 
+    //该机型检测完成时间
     private Date checkDateFinish;
 
+    //对于该检测记录结果的描述
     private String checkResult;
 
     public Integer getExcId() {

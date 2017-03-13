@@ -21,6 +21,7 @@ public class PGN {
 
     private String pgnSa;
 
+    //该PGN下的SP的 ref集合 发现用处不太大 可有可无 
     private String pgnGroupSp;
 
     private String pgnType;

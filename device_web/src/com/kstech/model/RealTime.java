@@ -4,7 +4,8 @@ public class RealTime {
     private Integer realtimeId;
 
     private String deviceNum;
-
+    
+    //实时显示的参数名称，其属于对应deviceNum下的DSItem的子集
     private String realtimeName;
 
     public RealTime() {

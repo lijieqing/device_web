@@ -9,8 +9,8 @@
     <result column="checker_code" property="checkerCode" jdbcType="INTEGER" />
     <result column="checker_name" property="checkerName" jdbcType="VARCHAR" />
     <result column="check_exc_status" property="checkExcStatus" jdbcType="INTEGER" />
-    <result column="check_date_start" property="checkDateStart" jdbcType="DATE" />
-    <result column="check_date_finish" property="checkDateFinish" jdbcType="DATE" />
+    <result column="check_date_start" property="checkDateStart" jdbcType="TIMESTAMP" />
+    <result column="check_date_finish" property="checkDateFinish" jdbcType="TIMESTAMP" />
     <result column="check_result" property="checkResult" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
@@ -34,7 +34,7 @@
       check_result)
     values (#{excId,jdbcType=INTEGER}, #{excName,jdbcType=VARCHAR}, #{deviceId,jdbcType=INTEGER}, 
       #{deviceNum,jdbcType=VARCHAR}, #{checkerCode,jdbcType=INTEGER}, #{checkerName,jdbcType=VARCHAR}, 
-      #{checkExcStatus,jdbcType=INTEGER}, #{checkDateStart,jdbcType=DATE}, #{checkDateFinish,jdbcType=DATE}, 
+      #{checkExcStatus,jdbcType=INTEGER}, #{checkDateStart,jdbcType=TIMESTAMP}, #{checkDateFinish,jdbcType=TIMESTAMP}, 
       #{checkResult,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.kstech.model.CheckRecordDB" >
@@ -94,10 +94,10 @@
         #{checkExcStatus,jdbcType=INTEGER},
       </if>
       <if test="checkDateStart != null" >
-        #{checkDateStart,jdbcType=DATE},
+        #{checkDateStart,jdbcType=TIMESTAMP},
       </if>
       <if test="checkDateFinish != null" >
-        #{checkDateFinish,jdbcType=DATE},
+        #{checkDateFinish,jdbcType=TIMESTAMP},
       </if>
       <if test="checkResult != null" >
         #{checkResult,jdbcType=VARCHAR},
@@ -126,10 +126,10 @@
         check_exc_status = #{checkExcStatus,jdbcType=INTEGER},
       </if>
       <if test="checkDateStart != null" >
-        check_date_start = #{checkDateStart,jdbcType=DATE},
+        check_date_start = #{checkDateStart,jdbcType=TIMESTAMP},
       </if>
       <if test="checkDateFinish != null" >
-        check_date_finish = #{checkDateFinish,jdbcType=DATE},
+        check_date_finish = #{checkDateFinish,jdbcType=TIMESTAMP},
       </if>
       <if test="checkResult != null" >
         check_result = #{checkResult,jdbcType=VARCHAR},
@@ -145,8 +145,8 @@
       checker_code = #{checkerCode,jdbcType=INTEGER},
       checker_name = #{checkerName,jdbcType=VARCHAR},
       check_exc_status = #{checkExcStatus,jdbcType=INTEGER},
-      check_date_start = #{checkDateStart,jdbcType=DATE},
-      check_date_finish = #{checkDateFinish,jdbcType=DATE},
+      check_date_start = #{checkDateStart,jdbcType=TIMESTAMP},
+      check_date_finish = #{checkDateFinish,jdbcType=TIMESTAMP},
       check_result = #{checkResult,jdbcType=VARCHAR}
     where exc_id = #{excId,jdbcType=INTEGER}
   </update>

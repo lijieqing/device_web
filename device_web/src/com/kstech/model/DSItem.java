@@ -1,12 +1,16 @@
 package com.kstech.model;
 
 public class DSItem {
+	//DSItem ID
     private Integer dsitemId;
 
+    //机型配置信息 名称
     private String deviceNum;
 
+    //数据类型
     private String datatype;
 
+    //精度
     private String declen;
 
     private String linkto;
@@ -15,8 +19,9 @@ public class DSItem {
 
     private String dsitemUint;
 
+    //内容格式 为 数组 
     private String dsitemGroupData;
-
+    
     private String dsitemValue;
     public DSItem() {
 		super();
