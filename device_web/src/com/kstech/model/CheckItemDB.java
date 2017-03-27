@@ -30,7 +30,7 @@ public class CheckItemDB {
     //检测项目的检测次数
     private Integer itemTimes;
 
-    //检测项目的进度，用于PC端 查看检测情况
+    //检测项目的进度，用于PC端 查看检测情况 0 未开始 ， 1 正在检测 ，3 检测完成
     private Integer itemProgress;
 
     public Integer getItemId() {
